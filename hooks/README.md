@@ -101,3 +101,39 @@ This is also called stale closure , where we just get the initial value from the
 
 for more info , see the article below.
 [alt](https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work/)
+
+## Rules for hooks:
+
+1. only define hooks at the top level , hooks does not work inside loops or conditions.
+2. Only call hooks from react functions , and not just any other js function.
+3. Calling the set method does not result to immediate change in the current value , it means that the value will be updated in the next render.
+
+for example.
+
+```javaScript
+
+for(let i=0; i < 5 ;i++){
+    setCount(count +1);
+}
+
+
+```
+
+assuming that the value of the count is initially 0, the above 5 set method call is interpreated as
+
+```javascript
+setCount(0 + 1);
+setCount(0 + 1);
+setCount(0 + 1);
+setCount(0 + 1);
+setCount(0 + 1);
+```
+
+Thus whenever we want to change the value which is depending on the previous value ,we do it by using the following syntax.
+
+```javaScript
+
+
+setCount(prevCount => prevCount +1);
+
+```
