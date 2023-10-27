@@ -137,3 +137,7 @@ Thus whenever we want to change the value which is depending on the previous val
 setCount(prevCount => prevCount +1);
 
 ```
+
+### useState with objects:
+
+when we have an object as our state , and we want to update few properties of the object we need to using the spread operator to preserve the other values of the object and then change the required attribute.

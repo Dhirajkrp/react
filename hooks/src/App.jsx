@@ -1,10 +1,10 @@
 import "./App.css";
-import Counter from "./useState/Counter";
+import DependencyEffect from "./useEffect/DependencyEffect";
 
 function App() {
   return (
     <>
-      <Counter />
+      <DependencyEffect />
     </>
   );
 }
