@@ -9,6 +9,8 @@ import StartScreen from "./components/StartScreen";
 import NextButton from "./components/NextButton";
 import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
+import Footer from "./components/Footer";
+import Timer from "./components/Timer";
 
 const initialState = {
   questions: [],
@@ -19,7 +21,10 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
+  secondsRemaining: null,
 };
+
+const SECONDS_PER_QUESTION = 30;
 
 function reducer(state, action) {
   switch (action.type) {
@@ -29,7 +34,11 @@ function reducer(state, action) {
       return { ...state, status: "error" };
 
     case "startQuiz":
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        secondsRemaining: state.questions.length * SECONDS_PER_QUESTION,
+      };
 
     case "newAnswer":
       const question = state.questions.at(state.index);
@@ -57,11 +66,17 @@ function reducer(state, action) {
       };
     case "restart":
       return {
-        ...state,
-        points: 0,
-        index: 0,
-        answer: null,
+        ...initialState,
+        questions: state.questions,
+        highscore: state.highscore,
         status: "ready",
+      };
+
+    case "tick":
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        status: state.secondsRemaining <= 0 ? "finished" : state.status,
       };
     default:
       throw new Error("action is unknown");
@@ -106,12 +121,20 @@ function App() {
               dispatch={dispatch}
               answer={state.answer}
             />
-            <NextButton
-              dispatch={dispatch}
-              answer={state.answer}
-              index={state.index}
-              numQuestions={numQuestions}
-            />
+
+            <Footer>
+              <Timer
+                dispatch={dispatch}
+                secondsRemaining={state.secondsRemaining}
+              />
+
+              <NextButton
+                dispatch={dispatch}
+                answer={state.answer}
+                index={state.index}
+                numQuestions={numQuestions}
+              />
+            </Footer>
           </>
         )}
 
