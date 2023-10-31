@@ -66,3 +66,35 @@ eg:
 ```jsx
 <Link to =`/app/citis/${id}?lat=${position.lat}&&lng=${position.lng}`>
 ```
+
+## useSearchParams() hook
+
+This hook is similar to the useState hook and it passes two values , first the object containing all the query Parameters and second a setter function which can be used to change the query parameters in the application.
+
+```jsx
+function Map() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
+}
+```
+
+Notice how we use the get function on the state to fetch the query parameters.
+and not destructure the state like we do in the uesState hook.
+
+To change the search params we use the setter method and pass a new object as the new query parameter.
+
+eg:
+
+```jsx
+setSearchParams({ lat: 23, lng: 50 });
+```
+
+### useNavigate() hook
+
+This is another hook provided by the react router dom which enables us to move between routes programatically.
+
+```jsx
+const navigate = usenavigate();
+```
