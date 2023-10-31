@@ -15,45 +15,54 @@ The react-router-dom comes with few useful components which we can ues to implem
 
 By defalut when we use the anchor tag to move to different pages , the browser performs a hard reload and reloads the entire page , but if we want to stop this we can use the Link insted of the a tag, the `Link` has an attribute as `to` which is used to specify the path of the desired page.
 
-const [cities , setCities] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
+## useParam Hook
 
-useEffect(function () {
-async function getCities (){
-try{
-const res = await fetch("http://localhost:8000/cities");
-const data = await res.json();
+we can pass data from one component or link to another using the url params , to implement that there are 3 steps.
 
-            setCities(data);
-        }cathc(error){
-            console.error(error);
-        }finally{
-            setIsLoading(false);
-        }
-    }
-    getCities();
-
-}, []);
-
-## code for App.js
+1. Add a route with the desired signature or the data you want to pass.
+   eg:
 
 ```jsx
-import Header from "./components/Header";
-import Loader from "./components/Loader";
-import Error from "./components/Error";
+<Route to ='cities/:id' element = {<City/>}>
 
-import Question from "./components/Error";
-import "./index.css";
-
-import { useEffect, useReducer } from "react";
-import StartScreen from "./components/StartScreen";
-import NextButton from "./components/NextButton";
-import Progress from "./components/Progress";
-import FinishScreen from "./components/FinishScreen";
 ```
 
-### code for reducer
+2. Provide a link which matches this route.
+
+eg:
 
 ```jsx
+<Link to =`/app/citis/${id}`>
+```
 
+Notice that we do not use the : when specifying the link.
+
+3. Accessing the passed data.
+   To access the data, in this case the id , we use the useParam() hook which is provided by the react-router-dom.
+
+eg:
+
+```jsx
+function City() {
+  const { id } = useParas();
+}
+```
+
+## Query String
+
+This is rather simple and does not require any additional route setup.
+we can directly pass the query parameters into any link by using the ? symbol , so the syntax is
+
+```
+url?v1=x&&v2=y&&v2=z
+```
+
+where url is the actual path ,which is followed by the question mark , then the v1 ,v2, v3 are the variable names followed by their values .
+
+Notice we use && to separate the variables.
+
+eg:
+
+```jsx
+<Link to =`/app/citis/${id}?lat=${position.lat}&&lng=${position.lng}`>
 ```
