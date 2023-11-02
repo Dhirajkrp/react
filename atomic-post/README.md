@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Atomic - posts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The goal of this project is to learn about the context api and build a simple application to implement it.
 
-## Available Scripts
+In this we will see what are the advantages of using the context api, why should we consider using the context api and what are the best practices of using it.
 
-In the project directory, you can run:
+To use the context api there are 3 main steps.
 
-### `npm start`
+1. Defining the context: For this we use the createContext();
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+eg:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```jsx
+const PostsContext = createContext();
+```
 
-### `npm test`
+2. Providing values to the context.
+   once we create the context ,we then provide some values to the cotext.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+for that we use the Provider pattern.
 
-### `npm run build`
+```jsx
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<PostsContext.proveider  value = {{
+   state1 = value1,
+   state2 = value2,
+   state3 = value3 ,
+   ...
+}}>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. consuming the context , for this we use the useContext hook provided by react.
+   and pass the context we just created as the parameter.
 
-### `npm run eject`
+```jsx
+const data = useContext(PostsContext);
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Notice that we pass the complete name of the context , and not something like PostsContext.Consumer or something like that.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+we can also use destructuring to access specific states from the context.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```jsx
+const { state1 } = useContext(PostsContext);
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Best Practices:
 
-## Learn More
+- It is always better to use context, when we have to share the state in nested component tree to avoid prop drilling.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Always try to group the related states in one context.
+  eg the PostsContext can have state like , posts , addPost , deletePost , etc.
