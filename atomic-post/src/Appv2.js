@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import Button from "./Button";
+//
+
+import { faker } from "@faker-js/faker";
+import { useEffect, useState } from "react";
 
 import { PostProvider, usePosts } from "./PostsContext";
-import { faker } from "@faker-js/faker";
 
 function createRandomPost() {
   return {
@@ -11,49 +12,27 @@ function createRandomPost() {
   };
 }
 
-// there are 3 steps for working with the cotext.
-/*
-1. Create a new context
-we do this by using the createContext() hook
-eg:
-
-const PostContext = createContext()
-
-2. Provide Values to the child component.
-
-to provide the values to the child component , we first wrap all the components with the context provider component.
-
-eg:
-
-    <PostContext.Provider>    
-        <Children>...
-    </PostContext.Provider>
-    
-    
-we get access to the value prop in the context provider component which works similar to the use State , where we define our state to be used.
-
-eg:
-
-<PostContext.Provider value ={{
-    name: "Dhiraj",
-    age: 100,
-}}
-
-
-3. Consuming the context.
-
-to use the context value we use the hook called the useContext(),
-This hook takes the context and returns the value of that context ;
-
-eg :
-    const {name, age} = usePosts();
-*/
-
 function App() {
+  // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
+  const [isFakeDark, setIsFakeDark] = useState(false);
+  useEffect(
+    function () {
+      document.documentElement.classList.toggle("fake-dark-mode");
+    },
+    [isFakeDark]
+  );
+
   return (
+    // step 2 : provide value to the child component
     <PostProvider>
       <section>
-        <Button />
+        <button
+          onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+          className="btn-fake-dark-mode"
+        >
+          {isFakeDark ? "☀️" : "🌙"}
+        </button>
+
         <Header />
         <Main />
         <Archive />
