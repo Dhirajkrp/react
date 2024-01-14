@@ -13,11 +13,11 @@ function createRandomPost() {
 
 // there are 3 steps for working with the cotext.
 /*
-1. Create a new context
+1. Create a new context this is the step one did you understand. 
 we do this by using the createContext() hook
 eg:
 
-const PostContext = createContext()
+const PostContext = createContext("hehehe")
 
 2. Provide Values to the child component.
 
@@ -69,7 +69,9 @@ function Header() {
     <header>
       <h1>
         <span>⚛️</span>The Atomic Blog
+        <span>Molecular Blogs</span>
       </h1>
+
       <div>
         <Results />
         <SearchPosts />

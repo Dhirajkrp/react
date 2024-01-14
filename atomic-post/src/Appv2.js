@@ -28,6 +28,7 @@ function App() {
       <section>
         <button
           onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+          cla
           className="btn-fake-dark-mode"
         >
           {isFakeDark ? "☀️" : "🌙"}
@@ -47,7 +48,8 @@ function Header() {
   return (
     <header>
       <h1>
-        <span>⚛️</span>The Atomic Blog
+        <span>⚛️</span>The super Atomic blog good to see this and good to see
+        that
       </h1>
       <div>
         <Results />
