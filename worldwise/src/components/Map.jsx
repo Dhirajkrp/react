@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./Map.module.css";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { useCities } from "../contexts/CitiesContext";
 
 function Map() {
@@ -15,18 +15,15 @@ function Map() {
   const navigate = useNavigate();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCities();
+
+  useEffect(() => {
+    if (lat && lng) setMapPosition([lat, lng]);
+  }, [lat, lng]);
   return (
     <div className={styles.mapContainer} onClick={() => navigate("/app/form")}>
-      Map
-      <p>
-        Position: Lat :{lat} Lng: {lng}
-      </p>
-      <button onClick={() => setSearchParams({ lat: 23, lng: 50 })}>
-        Change Position
-      </button>
       <MapContainer
         center={mapPosition}
-        zoom={13}
+        zoom={6}
         scrollWheelZoom={true}
         className={styles.map}
       >
@@ -45,9 +42,16 @@ function Map() {
             </Popup>
           </Marker>
         ))}
+        <ChangeCenter position={mapPosition} />
       </MapContainer>
     </div>
   );
+}
+
+function ChangeCenter({ position }) {
+  const map = useMap();
+  map.setView(position);
+  return null;
 }
 
 export default Map;
