@@ -5,6 +5,7 @@ import Button from "./Button";
 
 import styles from "./Form.module.css";
 import BackButton from "./BackButton";
+import { useUrlPosition } from "../hooks/useUrlPositions";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -19,6 +20,8 @@ function Form() {
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
+  const [lat, lng] = useUrlPosition();
+  console.log(`Latitude : ${lat} , Longitude: ${lng}`);
 
   return (
     <form className={styles.form}>
