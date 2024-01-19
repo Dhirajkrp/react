@@ -69,6 +69,10 @@ function Form() {
     return <Message message={formError} />;
   }
 
+  if (!lat && !lng) {
+    return <Message message={"Start by clicking somewhere on the map"} />;
+  }
+
   return (
     <form className={styles.form}>
       <div className={styles.row}>
