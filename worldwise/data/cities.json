@@ -35,6 +35,94 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Delhi",
+      "emoji": "🇮🇳",
+      "date": "2024-01-19T07:05:41.822Z",
+      "notes": "This is where i am living currently.",
+      "position": {
+        "lat": "28.5941685062326",
+        "lng": "77.23388671875"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Paris",
+      "emoji": "🇫🇷",
+      "date": "2024-01-19T07:10:27.453Z",
+      "notes": "This is where MJ live :)",
+      "position": {
+        "lat": "48.850258199721495",
+        "lng": "2.3538208007812504"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Siena",
+      "emoji": "🇮🇹",
+      "date": "2024-01-19T07:14:22.981Z",
+      "notes": "I really dont know",
+      "position": {
+        "lat": "43.31318813919643",
+        "lng": "11.3214111328125"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Jesi",
+      "emoji": "🇮🇹",
+      "date": "2024-01-19T07:15:39.352Z",
+      "notes": "hehehe",
+      "position": {
+        "lat": "43.52266348752663",
+        "lng": "13.250885009765627"
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Colli sul Velino",
+      "emoji": "🇮🇹",
+      "date": "2024-01-19T07:32:10.772Z",
+      "notes": "jhehe",
+      "position": {
+        "lat": "42.50450285299051",
+        "lng": "12.766113281250002"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Helsinki",
+      "emoji": "🇫🇮",
+      "date": "2024-01-19T07:36:54.444Z",
+      "notes": "This is where Mj used to live ;)",
+      "position": {
+        "lat": "60.16064293693044",
+        "lng": "24.949951171875"
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Dadri",
+      "emoji": "🇮🇳",
+      "date": "2024-01-19T07:47:00.717Z",
+      "notes": "this is dadri",
+      "position": {
+        "lat": "28.569145323559233",
+        "lng": "77.32795715332033"
+      },
+      "id": 98443204
+    },
+    {
+      "cityName": "Ghaziabad",
+      "emoji": "🇮🇳",
+      "date": "2024-01-19T07:51:58.009Z",
+      "notes": "arora",
+      "position": {
+        "lat": "28.66649117698661",
+        "lng": "77.41928100585939"
+      },
+      "id": 98443205
     }
   ]
 }
